@@ -21,7 +21,7 @@ fn read_file(test_file: &str) -> Vec<String> {
 fn solve_1(lines: &Vec<String>) -> i32 {
     let mut most_calories = 0;
     let mut current_calories = 0;
-    for line in lines.clone() {
+    for line in lines {
         if line.trim().is_empty() {
             most_calories = max(most_calories, current_calories);
             current_calories = 0;
