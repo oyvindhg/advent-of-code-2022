@@ -3,17 +3,22 @@ use std::{fs, io};
 use std::cmp::max;
 use std::env;
 use std::io::BufRead;
+use std::path::{Path, PathBuf};
 
-fn main() {
-    let root = env::current_dir().unwrap();
-    let day = env!("CARGO_PKG_NAME");
-    let file_path = root.join(day).join("input/input.txt");
+fn get_path(test_file: &str) -> PathBuf {
+    let root = Path::new(env!("CARGO_MANIFEST_DIR"));
+    return root.join("input").join(test_file);
+}
 
+fn read_file(test_file: &str) -> Vec<String> {
+    let file_path = get_path(test_file);
     let file = fs::File::open(file_path).expect("Could not read file");
+
     let raw_lines = BufReader::new(file).lines();
+    return raw_lines.map(|raw_line| raw_line.unwrap()).collect::<Vec<String>>();
+}
 
-    let lines = raw_lines.map(|raw_line| raw_line.unwrap()).collect::<Vec<String>>();
-
+fn solve_1(lines: &Vec<String>) -> i32 {
     let mut most_calories = 0;
     let mut current_calories = 0;
     for line in lines.clone() {
@@ -25,8 +30,10 @@ fn main() {
             current_calories += new_calories;
         }
     }
-    println!("Task 1: {most_calories}");
+    return max(most_calories, current_calories);
+}
 
+fn solve_2(lines: &Vec<String>) -> i32 {
     let mut most_calories = 0;
     let mut second_most_calories = 0;
     let mut third_most_calories = 0;
@@ -49,6 +56,28 @@ fn main() {
             current_calories += new_calories;
         }
     }
-    let total_calories = most_calories + second_most_calories + third_most_calories;
-    println!("Task 2: {total_calories}");
+    return most_calories + second_most_calories + max(third_most_calories, current_calories);
+}
+
+fn main() {
+    let lines = read_file("input.txt");
+    println!("Task 1: {}", solve_1(&lines));
+    println!("Task 2: {}", solve_2(&lines));
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::{read_file, solve_1, solve_2};
+
+    #[test]
+    fn test_1() {
+        let lines = read_file("test.txt");
+        assert_eq!(solve_1(&lines), 24000);
+    }
+
+    #[test]
+    fn test_2() {
+        let lines = read_file("test.txt");
+        assert_eq!(solve_2(&lines), 45000);
+    }
 }
