@@ -1,9 +1,11 @@
 # advent-of-code-2022
-Rust solutions to the 2022 Advent of Code problems.
+Rust solutions to the [2022 Advent of Code](https://adventofcode.com/2022) problems.
 
-### Problem website
+### How to run
 
-https://adventofcode.com/2022
+`cargo run -p day{DD}` where `{DD}` is the day number.
+
+For example, `cargo run -p day01` runs the solution for the first day.
 
 ### Last year's solution
 
