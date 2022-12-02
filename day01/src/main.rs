@@ -5,13 +5,13 @@ use std::env;
 use std::io::BufRead;
 use std::path::{Path, PathBuf};
 
-fn get_path(test_file: &str) -> PathBuf {
+fn get_path(input_file: &str) -> PathBuf {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
-    return root.join("input").join(test_file);
+    return root.join("input").join(input_file);
 }
 
-fn read_file(test_file: &str) -> Vec<String> {
-    let file_path = get_path(test_file);
+fn read_file(input_file: &str) -> Vec<String> {
+    let file_path = get_path(input_file);
     let file = fs::File::open(file_path).expect("Could not read file");
 
     let raw_lines = BufReader::new(file).lines();
