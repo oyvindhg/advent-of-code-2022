@@ -1,5 +1,3 @@
-extern crate core;
-
 use std::collections::HashSet;
 use std::fs;
 use std::io::{BufRead, BufReader};
@@ -88,7 +86,7 @@ fn solve_2(lines: &Vec<String>) -> u32 {
             2 => second_items = line,
             0 => {
                 priority_sum += find_group_priority(first_items, second_items, line);
-            },
+            }
             _ => panic!("Not valid group")
         }
     }
