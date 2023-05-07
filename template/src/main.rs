@@ -15,6 +15,15 @@ fn read_file(input_file: &str) -> Vec<String> {
     return raw_lines.map(|raw_line| raw_line.unwrap()).collect::<Vec<String>>();
 }
 
+fn parse(lines: &Vec<String>) -> Vec<String> {
+    return lines.clone()
+}
+
+fn get_data(input_file: &str) -> Vec<String> {
+    let lines = read_file(input_file);
+    return parse(&lines);
+}
+
 fn solve_1(lines: &Vec<String>) -> i32 {
     println!("{:?}", lines);
     return 0;
@@ -26,24 +35,24 @@ fn solve_2(lines: &Vec<String>) -> i32 {
 }
 
 fn main() {
-    let lines = read_file("input.txt");
+    let lines = get_data("input.txt");
     println!("Task 1: {}", solve_1(&lines));
     println!("Task 2: {}", solve_2(&lines));
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::{read_file, solve_1, solve_2};
+    use crate::{get_data, solve_1, solve_2};
 
     #[test]
     fn test_1() {
-        let lines = read_file("test.txt");
-        assert_eq!(solve_1(&lines), 0);
+        let data = get_data("test.txt");
+        assert_eq!(solve_1(&data), 0);
     }
 
     #[test]
     fn test_2() {
-        let lines = read_file("test.txt");
-        assert_eq!(solve_2(&lines), 0);
+        let data = get_data("test.txt");
+        assert_eq!(solve_2(&data), 0);
     }
 }
