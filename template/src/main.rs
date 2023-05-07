@@ -24,20 +24,20 @@ fn get_data(input_file: &str) -> Vec<String> {
     return parse(&lines);
 }
 
-fn solve_1(lines: &Vec<String>) -> i32 {
-    println!("{:?}", lines);
+fn solve_1(data: &Vec<String>) -> i32 {
+    println!("{:?}", data);
     return 0;
 }
 
-fn solve_2(lines: &Vec<String>) -> i32 {
-    println!("{:?}", lines);
+fn solve_2(data: &Vec<String>) -> i32 {
+    println!("{:?}", data);
     return 0;
 }
 
 fn main() {
-    let lines = get_data("input.txt");
-    println!("Task 1: {}", solve_1(&lines));
-    println!("Task 2: {}", solve_2(&lines));
+    let data = get_data("input.txt");
+    println!("Task 1: {}", solve_1(&data));
+    println!("Task 2: {}", solve_2(&data));
 }
 
 #[cfg(test)]
