@@ -1,6 +1,7 @@
 use std::fs;
 use std::io::{BufRead, BufReader};
 use std::path::{Path, PathBuf};
+use std::time::Instant;
 
 fn get_path(input_file: &str) -> PathBuf {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
@@ -36,8 +37,16 @@ fn solve_2(data: &Vec<String>) -> i32 {
 
 fn main() {
     let data = get_data("input.txt");
-    println!("Task 1: {}", solve_1(&data));
-    println!("Task 2: {}", solve_2(&data));
+
+    println!("---Task 1---");
+    let now = Instant::now();
+    println!("Solution: {}", solve_1(&data));
+    println!("Time: {} ms", now.elapsed().as_millis());
+
+    println!("\n---Task 2---");
+    let now = Instant::now();
+    println!("Solution: {}", solve_2(&data));
+    println!("Time: {} ms", now.elapsed().as_millis());
 }
 
 #[cfg(test)]
